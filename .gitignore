@@ -1,0 +1,17 @@
+# Archives de rendu et fichiers generes
+*.zip
+outputs/
+
+# Configuration locale / secrets
+.env
+.env.*
+
+# Dependances eventuelles
+vendor/
+node_modules/
+
+# Fichiers OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
