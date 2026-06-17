@@ -32,6 +32,7 @@ spl_autoload_register(static function (string $class): void {
 $action = $_GET['action'] ?? 'home';
 
 try {
+    // Point d'entree unique du MVC : l'action de l'URL choisit le controleur.
     switch ($action) {
         case 'home':
             (new HomeController())->home();

@@ -28,6 +28,7 @@ final class Database
 
     public static function nextId(string $table): int
     {
+        // Le SQL fourni n'utilise pas AUTO_INCREMENT : on calcule donc l'id suivant.
         if (!preg_match('/^[a-z_]+$/', $table)) {
             throw new InvalidArgumentException('Nom de table invalide.');
         }

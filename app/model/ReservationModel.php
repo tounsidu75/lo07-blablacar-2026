@@ -51,6 +51,7 @@ final class ReservationModel
     public function addTenRandomActiveReservations(): array
     {
         $pdo = Database::connection();
+        // Fonction examinateur : les tirages se font uniquement sur les trajets actifs.
         $activeTrips = $pdo->query(
             "SELECT t.id, dep.nom AS depart, arr.nom AS destination
              FROM trajet t
@@ -73,6 +74,7 @@ final class ReservationModel
 
         $pdo->beginTransaction();
         try {
+            // Les 10 insertions sont regroupees pour eviter un ajout partiel.
             $nextId = Database::nextId('reservation');
             $insert = $pdo->prepare(
                 'INSERT INTO reservation (id, trajet_id, passager_id)

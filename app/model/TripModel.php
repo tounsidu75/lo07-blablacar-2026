@@ -120,6 +120,7 @@ final class TripModel
     public function closeActiveTrip(int $tripId, int $driverId): array
     {
         $pdo = Database::connection();
+        // La cloture touche le trajet et les soldes : tout doit reussir ensemble.
         $pdo->beginTransaction();
 
         try {
@@ -149,6 +150,7 @@ final class TripModel
             $reservationCount = count($reservations);
             $total = $price * $reservationCount;
 
+            // Une reservation = un paiement, meme si le meme passager reserve deux fois.
             $debitStmt = $pdo->prepare(
                 'UPDATE utilisateur SET solde = solde - :prix WHERE id = :passager_id'
             );

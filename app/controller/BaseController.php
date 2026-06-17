@@ -13,6 +13,7 @@ abstract class BaseController
 
     protected function currentUser(): ?array
     {
+        // On repart de l'id en session, puis on recharge l'utilisateur en base.
         $loginId = (int) ($_SESSION['login_id'] ?? -1);
         if ($loginId < 0) {
             return null;
@@ -40,6 +41,7 @@ abstract class BaseController
 
     protected function requireRole(array $roles): array
     {
+        // Les droits sont controles ici, pas seulement caches dans le menu.
         $user = $this->requireLogin();
         if (!in_array($user['role'], $roles, true)) {
             http_response_code(403);
@@ -56,6 +58,7 @@ abstract class BaseController
 
     protected function render(string $view, array $data = []): void
     {
+        // Toutes les pages gardent le meme header, le meme footer et les flash messages.
         $viewFile = dirname(__DIR__) . '/view/' . $view;
         if (!is_file($viewFile)) {
             throw new RuntimeException('Vue introuvable : ' . $view);
