@@ -1,3 +1,4 @@
+<?php // Vue A2/A3 : formulaire commun pour ajouter conducteur ou passager. ?>
 <section>
     <h2><?= e($heading) ?></h2>
     <?php if ($errors): ?>

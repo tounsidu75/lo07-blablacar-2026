@@ -1,3 +1,4 @@
+<?php // Page autonome pour afficher une erreur serveur non prevue. ?>
 <!doctype html>
 <html lang="fr">
 <head>

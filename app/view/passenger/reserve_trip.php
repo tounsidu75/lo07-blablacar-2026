@@ -1,3 +1,4 @@
+<?php // Vue P2 : formulaire de reservation d'un trajet actif. ?>
 <section>
     <h2>Réservation d’un trajet actif</h2>
     <?php if ($errors): ?>

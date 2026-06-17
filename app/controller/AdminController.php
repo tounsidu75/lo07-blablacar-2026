@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 final class AdminController extends BaseController
 {
+    // Controleur des fonctions A1 a A7 reservees a l'administrateur.
     private VehicleModel $vehicles;
     private CityModel $cities;
 
@@ -16,6 +17,7 @@ final class AdminController extends BaseController
 
     public function users(): void
     {
+        // A1 : affiche tous les utilisateurs.
         $this->requireRole(['administrateur']);
         $this->render('admin/users.php', [
             'title' => 'Liste des utilisateurs',
@@ -25,16 +27,19 @@ final class AdminController extends BaseController
 
     public function addDriver(): void
     {
+        // A2 : reutilise le formulaire utilisateur avec le role conducteur.
         $this->handleAddUser('conducteur', 'Formulaire de création d’un nouveau conducteur');
     }
 
     public function addPassenger(): void
     {
+        // A3 : reutilise le meme formulaire avec le role passager.
         $this->handleAddUser('passager', 'Formulaire de création d’un nouveau passager');
     }
 
     public function vehicles(): void
     {
+        // A4 : liste les vehicules sans afficher les cles primaires.
         $this->requireRole(['administrateur']);
         $this->render('admin/vehicles.php', [
             'title' => 'Liste des véhicules',
@@ -44,6 +49,7 @@ final class AdminController extends BaseController
 
     public function addVehicle(): void
     {
+        // A5 : ajoute un vehicule rattache a un conducteur existant.
         $this->requireRole(['administrateur']);
         $drivers = $this->users->byRole('conducteur');
         $errors = [];
@@ -56,6 +62,7 @@ final class AdminController extends BaseController
         ];
 
         if ($this->isPost()) {
+            // On recharge le formulaire pour conserver les valeurs en cas d'erreur.
             foreach ($form as $key => $_) {
                 $form[$key] = $this->postString($key);
             }
@@ -90,6 +97,7 @@ final class AdminController extends BaseController
 
     public function cities(): void
     {
+        // A6 : affiche le referentiel des villes.
         $this->requireRole(['administrateur']);
         $this->render('admin/cities.php', [
             'title' => 'Liste des villes',
@@ -99,6 +107,7 @@ final class AdminController extends BaseController
 
     public function addCity(): void
     {
+        // A7 : ajoute une ville utilisable pour les futurs trajets.
         $this->requireRole(['administrateur']);
         $errors = [];
         $nom = '';
@@ -129,6 +138,7 @@ final class AdminController extends BaseController
 
     private function handleAddUser(string $role, string $heading): void
     {
+        // Methode commune pour eviter de dupliquer ajout conducteur/passager.
         $this->requireRole(['administrateur']);
         $errors = [];
         $form = [

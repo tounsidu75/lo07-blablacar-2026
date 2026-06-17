@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
+    // La session transporte login_id entre les pages de l'application.
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
@@ -16,6 +17,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once dirname(__DIR__) . '/config/config.php';
 
 spl_autoload_register(static function (string $class): void {
+    // Charge automatiquement les classes des dossiers model et controller.
     $paths = [
         dirname(__DIR__) . '/model/' . $class . '.php',
         dirname(__DIR__) . '/controller/' . $class . '.php',

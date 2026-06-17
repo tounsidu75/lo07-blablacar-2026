@@ -1,3 +1,4 @@
+<?php // Vue A6 : tableau de toutes les villes. ?>
 <section>
     <h2>Liste des villes</h2>
     <?php if (!$cities): ?>

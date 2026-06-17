@@ -6,6 +6,7 @@ final class AuthController extends BaseController
 {
     public function login(): void
     {
+        // F1 : verifie le couple login/mot de passe puis ouvre la session.
         $errors = [];
         $login = '';
 
@@ -37,6 +38,7 @@ final class AuthController extends BaseController
 
     public function logout(): void
     {
+        // F2 : remet login_id a -1 pour revenir a l'etat non connecte.
         $_SESSION['login_id'] = -1;
         session_regenerate_id(true);
         set_flash('success', 'Déconnexion effectuée.');

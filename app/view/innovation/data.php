@@ -1,3 +1,4 @@
+<?php // Vue innovation data : indicateurs calcules depuis la base SQL. ?>
 <section>
     <h2>Innovation data : tableau de bord</h2>
     <div class="metrics">

@@ -6,6 +6,7 @@ final class TripModel
 {
     public function byDriver(int $driverId): array
     {
+        // C2 : tous les trajets du conducteur, actifs et passifs.
         $stmt = Database::connection()->prepare(
             "SELECT t.id, dep.nom AS depart, arr.nom AS destination, t.prix, t.date_depart,
                     t.heure_depart, t.statut, CONCAT(v.marque, ' ', v.modele) AS vehicule,
@@ -23,6 +24,7 @@ final class TripModel
 
     public function activeByDriver(int $driverId): array
     {
+        // Liste courte des trajets actifs pour les formulaires C4 et C5.
         $stmt = Database::connection()->prepare(
             "SELECT t.id, dep.nom AS depart, arr.nom AS destination, t.date_depart,
                     t.heure_depart, t.prix
@@ -38,6 +40,7 @@ final class TripModel
 
     public function allActiveWithDetails(): array
     {
+        // P2 : trajets actifs visibles par un passager pour reserver.
         return Database::connection()->query(
             "SELECT t.id, dep.nom AS depart, arr.nom AS destination, t.date_depart,
                     t.heure_depart, t.prix, CONCAT(c.prenom, ' ', c.nom) AS conducteur,
@@ -61,6 +64,7 @@ final class TripModel
         string $dateDepart,
         string $heureDepart
     ): int {
+        // C3 : tout nouveau trajet cree par un conducteur commence actif.
         $id = Database::nextId('trajet');
         $stmt = Database::connection()->prepare(
             "INSERT INTO trajet
@@ -84,6 +88,7 @@ final class TripModel
 
     public function passengersForActiveDriverTrip(int $tripId, int $driverId): array
     {
+        // C4 : compte le nombre de places reservees par passager.
         $stmt = Database::connection()->prepare(
             "SELECT u.nom, u.prenom, u.login, COUNT(*) AS places
              FROM trajet t
@@ -102,6 +107,7 @@ final class TripModel
 
     public function activeDriverTripLabel(int $tripId, int $driverId): ?array
     {
+        // Verifie qu'un trajet actif appartient bien au conducteur connecte.
         $stmt = Database::connection()->prepare(
             "SELECT t.id, dep.nom AS depart, arr.nom AS destination, t.date_depart, t.heure_depart, t.prix
              FROM trajet t

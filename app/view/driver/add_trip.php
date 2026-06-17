@@ -1,3 +1,4 @@
+<?php // Vue C3 : formulaire de creation d'un trajet actif. ?>
 <section>
     <h2>Création d’un nouveau trajet</h2>
     <?php if ($errors): ?>

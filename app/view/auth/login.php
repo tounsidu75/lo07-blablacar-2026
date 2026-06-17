@@ -1,3 +1,4 @@
+<?php // Vue F1 : formulaire de connexion. ?>
 <section>
     <h2>Login</h2>
     <?php if ($errors): ?>

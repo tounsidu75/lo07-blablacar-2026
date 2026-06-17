@@ -1,3 +1,4 @@
+<?php // Vue C2 : tous les trajets du conducteur connecte. ?>
 <section>
     <h2>Liste de tous les trajets du conducteur <?= e($currentUser['nom'] . ' ' . $currentUser['prenom']) ?></h2>
     <?php if (!$trips): ?>

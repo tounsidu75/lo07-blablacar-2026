@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 abstract class BaseController
 {
+    // Base commune a tous les controleurs : utilisateur, droits et rendu.
     protected UserModel $users;
 
     public function __construct()
@@ -30,6 +31,7 @@ abstract class BaseController
 
     protected function requireLogin(): array
     {
+        // Si personne n'est connecte, on renvoie vers le formulaire de login.
         $user = $this->currentUser();
         if (!$user) {
             set_flash('warning', 'Vous devez vous connecter pour accéder à cette page.');
@@ -76,21 +78,25 @@ abstract class BaseController
 
     protected function isPost(): bool
     {
+        // Permet de separer affichage du formulaire et traitement de l'envoi.
         return ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST';
     }
 
     protected function postString(string $name): string
     {
+        // Lecture simple d'un champ texte envoye par formulaire.
         return trim((string) ($_POST[$name] ?? ''));
     }
 
     protected function postInt(string $name): int
     {
+        // Lecture d'un champ numerique entier.
         return (int) ($_POST[$name] ?? 0);
     }
 
     protected function postFloat(string $name): float
     {
+        // Accepte les virgules francaises dans les champs prix/solde.
         return (float) str_replace(',', '.', (string) ($_POST[$name] ?? '0'));
     }
 }

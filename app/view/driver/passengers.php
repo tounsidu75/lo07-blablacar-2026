@@ -1,3 +1,4 @@
+<?php // Vue C4 : passagers ayant reserve un trajet actif du conducteur. ?>
 <section>
     <h2>Liste des passagers de l’un de mes trajets actifs</h2>
     <?php if ($errors): ?>

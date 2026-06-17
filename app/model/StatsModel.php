@@ -6,8 +6,10 @@ final class StatsModel
 {
     public function dashboard(): array
     {
+        // Requetes regroupees pour alimenter la page Innovation data.
         $pdo = Database::connection();
 
+        // Indicateurs principaux : volumes, statuts des trajets et prix moyen.
         $counts = $pdo->query(
             "SELECT
                 (SELECT COUNT(*) FROM utilisateur) AS users_count,
@@ -21,6 +23,7 @@ final class StatsModel
                 (SELECT COALESCE(AVG(prix), 0) FROM trajet) AS average_price"
         )->fetch();
 
+        // Trajets les plus reserves, en comptant chaque ligne reservation.
         $popularTrips = $pdo->query(
             "SELECT dep.nom AS depart, arr.nom AS destination, COUNT(r.id) AS reservations
              FROM reservation r
@@ -32,6 +35,7 @@ final class StatsModel
              LIMIT 5"
         )->fetchAll();
 
+        // Montant potentiel par conducteur selon les reservations existantes.
         $driverIncome = $pdo->query(
             "SELECT CONCAT(u.prenom, ' ', u.nom) AS conducteur,
                     COALESCE(SUM(CASE WHEN r.id IS NULL THEN 0 ELSE t.prix END), 0) AS montant_reserve
@@ -44,6 +48,7 @@ final class StatsModel
              LIMIT 5"
         )->fetchAll();
 
+        // Villes les plus presentes en depart ou en arrivee.
         $busyCities = $pdo->query(
             "SELECT ville, SUM(total) AS total
              FROM (

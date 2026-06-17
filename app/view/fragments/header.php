@@ -1,3 +1,4 @@
+<?php // Fragment commun : entete, menu dynamique et messages flash. ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -19,6 +20,7 @@
         <?php endif; ?>
 
         <nav class="menu" aria-label="Navigation principale">
+            <?php // Un seul menu metier est affiche selon le role connecte. ?>
             <?php if ($currentUser && $currentUser['role'] === 'administrateur'): ?>
                 <div class="dropdown">
                     <button type="button">Administrateur</button>
@@ -57,6 +59,7 @@
                 </div>
             <?php endif; ?>
 
+            <?php // Menus publics toujours visibles : innovations, examinateur et connexion. ?>
             <div class="dropdown">
                 <button type="button">Innovations</button>
                 <div class="dropdown-menu">
@@ -93,5 +96,6 @@
     </section>
 
     <?php foreach ($flash as $flashMessage): ?>
+        <?php // Message de confirmation ou d'erreur apres une action. ?>
         <div class="flash <?= e($flashMessage['type']) ?>"><?= e($flashMessage['message']) ?></div>
     <?php endforeach; ?>

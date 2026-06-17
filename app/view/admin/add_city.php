@@ -1,3 +1,4 @@
+<?php // Vue A7 : formulaire d'ajout d'une ville. ?>
 <section>
     <h2>Ajout d’une ville</h2>
     <?php if ($errors): ?>

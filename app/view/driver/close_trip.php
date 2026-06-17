@@ -1,3 +1,4 @@
+<?php // Vue C5 : choix du trajet actif a cloturer. ?>
 <section>
     <h2>Clôturer l’un de mes trajets actifs</h2>
     <?php if ($errors): ?>

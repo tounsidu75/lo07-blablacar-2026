@@ -6,6 +6,7 @@ final class ReservationModel
 {
     public function forPassenger(int $passengerId): array
     {
+        // P1 : recupere les reservations detaillees du passager connecte.
         $stmt = Database::connection()->prepare(
             "SELECT t.date_depart, t.heure_depart, dep.nom AS depart, arr.nom AS destination,
                     CONCAT(c.prenom, ' ', c.nom) AS conducteur,
@@ -26,6 +27,7 @@ final class ReservationModel
 
     public function add(int $tripId, int $passengerId): int
     {
+        // P2 : on verifie que le trajet est encore actif avant d'inserer.
         $check = Database::connection()->prepare(
             "SELECT id FROM trajet WHERE id = :trip_id AND statut = 'actif'"
         );

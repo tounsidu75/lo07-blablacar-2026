@@ -8,6 +8,7 @@ final class Database
 
     public static function connection(): PDO
     {
+        // Une seule connexion PDO est partagee pendant toute la requete.
         if (self::$pdo === null) {
             $dsn = sprintf(
                 'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',

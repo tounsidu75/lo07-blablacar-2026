@@ -1,3 +1,4 @@
+<?php // Vue A4 : liste des vehicules sans afficher les cles primaires. ?>
 <section>
     <h2>Liste des véhicules</h2>
     <?php if (!$vehicles): ?>

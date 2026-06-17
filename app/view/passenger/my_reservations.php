@@ -1,3 +1,4 @@
+<?php // Vue P1 : reservations du passager connecte. ?>
 <section>
     <h2>Liste de mes réservations</h2>
     <?php if (!$reservations): ?>

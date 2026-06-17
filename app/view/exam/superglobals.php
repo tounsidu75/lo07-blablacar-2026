@@ -1,3 +1,4 @@
+<?php // Vue E1 : affichage lisible des superglobales pour l'examinateur. ?>
 <section>
     <h2>SuperGlobales (Cookies et Session)</h2>
     <div class="two-columns">

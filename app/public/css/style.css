@@ -1,3 +1,4 @@
+/* Variables principales : couleurs, surfaces et ombres reutilisees partout. */
 :root {
     --ink: #14213d;
     --ink-strong: #0f172a;
@@ -19,6 +20,7 @@
     --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.14);
 }
 
+/* Base globale de la page. */
 * {
     box-sizing: border-box;
 }
@@ -38,6 +40,7 @@ a {
     color: inherit;
 }
 
+/* Barre de navigation avec menus deroulants par role. */
 .topbar {
     position: sticky;
     top: 0;
@@ -188,6 +191,7 @@ a {
     background: var(--line);
 }
 
+/* Contenu principal et bloc titre. */
 .page {
     width: min(1220px, calc(100% - 48px));
     margin: 32px auto 0;
@@ -294,6 +298,7 @@ code {
     border-radius: 5px;
 }
 
+/* Messages flash apres connexion, ajout, erreur ou cloture. */
 .flash {
     margin: 16px 0;
     padding: 13px 15px;
@@ -329,6 +334,7 @@ code {
     background: #fff2f2;
 }
 
+/* Tableaux des listes admin, conducteur et passager. */
 .table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -383,6 +389,7 @@ tbody tr:last-child td {
     white-space: nowrap;
 }
 
+/* Formulaires d'ajout, de connexion et de reservation. */
 .form {
     width: min(600px, 100%);
     display: grid;
@@ -480,6 +487,7 @@ textarea:focus {
     box-shadow: 0 8px 16px rgba(220, 38, 38, 0.18);
 }
 
+/* Petits badges pour distinguer trajets actifs et passifs. */
 .status {
     display: inline-block;
     min-width: 62px;
@@ -501,6 +509,7 @@ textarea:focus {
     background: #ffedd5;
 }
 
+/* Affichages specifiques : villes, superglobales et resultats examinateur. */
 .city-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -546,6 +555,7 @@ pre {
     margin-bottom: 9px;
 }
 
+/* Cartes KPI de la page Innovation data. */
 .metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -588,6 +598,7 @@ pre {
     padding-left: 20px;
 }
 
+/* Respecte les utilisateurs qui reduisent les animations. */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -597,6 +608,7 @@ pre {
     }
 }
 
+/* Adaptation tablette : menu et largeur de page. */
 @media (max-width: 980px) {
     .topbar {
         position: static;
@@ -658,6 +670,7 @@ pre {
     }
 }
 
+/* Adaptation mobile : boutons, formulaires et tableaux plus compacts. */
 @media (max-width: 560px) {
     body {
         font-size: 15px;

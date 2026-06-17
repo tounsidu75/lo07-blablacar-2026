@@ -1,3 +1,4 @@
+<?php // Vue innovation MVC : explication des choix de structure du projet. ?>
 <section>
     <h2>Innovation MVC : code plus maintenable</h2>
     <div class="panel">

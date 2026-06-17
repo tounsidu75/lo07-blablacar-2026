@@ -1,3 +1,4 @@
+<?php // Vue A1 : tableau des utilisateurs existants. ?>
 <section>
     <h2>Liste des utilisateurs</h2>
     <?php if (!$users): ?>

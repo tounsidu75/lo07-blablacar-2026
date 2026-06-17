@@ -1,3 +1,4 @@
+<?php // Vue C1 : vehicules appartenant au conducteur connecte. ?>
 <section>
     <h2>Liste des véhicules du conducteur <?= e($currentUser['nom'] . ' ' . $currentUser['prenom']) ?></h2>
     <?php if (!$vehicles): ?>

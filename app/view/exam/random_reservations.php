@@ -1,3 +1,4 @@
+<?php // Vue E2 : resultat des 10 reservations aleatoires ajoutees. ?>
 <section>
     <h2>10 nouvelles réservations aléatoires</h2>
     <ol class="result-list">

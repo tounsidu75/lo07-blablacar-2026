@@ -6,6 +6,7 @@ final class VehicleModel
 {
     public function allWithOwner(): array
     {
+        // A4 : proprietaire affiche en prenom nom, sans exposer les ids.
         return Database::connection()->query(
             "SELECT v.marque, v.modele, v.annee, v.immatriculation,
                     CONCAT(u.prenom, ' ', u.nom) AS proprietaire
@@ -17,6 +18,7 @@ final class VehicleModel
 
     public function byOwner(int $ownerId): array
     {
+        // C1 : vehicules qui appartiennent au conducteur connecte.
         $stmt = Database::connection()->prepare(
             'SELECT id, marque, modele, annee, immatriculation
              FROM vehicule
@@ -29,6 +31,7 @@ final class VehicleModel
 
     public function add(string $marque, string $modele, int $annee, string $immatriculation, int $ownerId): int
     {
+        // A5 : ajoute un vehicule rattache a son proprietaire conducteur.
         $id = Database::nextId('vehicule');
         $stmt = Database::connection()->prepare(
             'INSERT INTO vehicule (id, marque, modele, annee, immatriculation, proprietaire_id)

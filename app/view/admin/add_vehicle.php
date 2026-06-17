@@ -1,3 +1,4 @@
+<?php // Vue A5 : formulaire d'ajout d'un vehicule avec choix du proprietaire. ?>
 <section>
     <h2>Formulaire de création d’un nouveau véhicule</h2>
     <?php if ($errors): ?>

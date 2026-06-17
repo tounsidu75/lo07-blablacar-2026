@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 final class DriverController extends BaseController
 {
+    // Controleur des fonctions C1 a C5 reservees aux conducteurs.
     private VehicleModel $vehicles;
     private CityModel $cities;
     private TripModel $trips;
@@ -18,6 +19,7 @@ final class DriverController extends BaseController
 
     public function vehicles(): void
     {
+        // C1 : affiche uniquement les vehicules du conducteur connecte.
         $driver = $this->requireRole(['conducteur']);
         $this->render('driver/my_vehicles.php', [
             'title' => 'Liste de mes véhicules',
@@ -27,6 +29,7 @@ final class DriverController extends BaseController
 
     public function trips(): void
     {
+        // C2 : affiche ses trajets actifs et passifs.
         $driver = $this->requireRole(['conducteur']);
         $this->render('driver/my_trips.php', [
             'title' => 'Liste de tous mes trajets',
@@ -36,6 +39,7 @@ final class DriverController extends BaseController
 
     public function addTrip(): void
     {
+        // C3 : cree un trajet actif avec un vehicule appartenant au conducteur.
         $driver = $this->requireRole(['conducteur']);
         $driverId = (int) $driver['id'];
         $cities = $this->cities->all();
@@ -51,6 +55,7 @@ final class DriverController extends BaseController
         ];
 
         if ($this->isPost()) {
+            // Les listes autorisees servent a refuser un vehicule ou une ville invalide.
             foreach ($form as $key => $_) {
                 $form[$key] = $this->postString($key);
             }
@@ -104,6 +109,7 @@ final class DriverController extends BaseController
 
     public function passengers(): void
     {
+        // C4 : affiche les passagers d'un des trajets actifs du conducteur.
         $driver = $this->requireRole(['conducteur']);
         $driverId = (int) $driver['id'];
         $activeTrips = $this->trips->activeByDriver($driverId);
@@ -132,6 +138,7 @@ final class DriverController extends BaseController
 
     public function closeTrip(): void
     {
+        // C5 : cloture un trajet actif et lance les paiements.
         $driver = $this->requireRole(['conducteur']);
         $driverId = (int) $driver['id'];
         $activeTrips = $this->trips->activeByDriver($driverId);

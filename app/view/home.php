@@ -1,3 +1,4 @@
+<?php // Page d'accueil : elle adapte le texte selon l'utilisateur connecte. ?>
 <section class="panel">
     <h2>Accueil</h2>
     <?php if ($currentUser): ?>

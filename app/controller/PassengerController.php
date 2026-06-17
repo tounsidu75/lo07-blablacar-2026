@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 final class PassengerController extends BaseController
 {
+    // Controleur des fonctions P1 et P2 reservees aux passagers.
     private ReservationModel $reservations;
     private TripModel $trips;
 
@@ -16,6 +17,7 @@ final class PassengerController extends BaseController
 
     public function reservations(): void
     {
+        // P1 : affiche toutes les reservations du passager connecte.
         $passenger = $this->requireRole(['passager']);
         $this->render('passenger/my_reservations.php', [
             'title' => 'Liste de mes réservations',
@@ -25,6 +27,7 @@ final class PassengerController extends BaseController
 
     public function reserve(): void
     {
+        // P2 : permet de reserver un trajet actif, doublons autorises.
         $passenger = $this->requireRole(['passager']);
         $activeTrips = $this->trips->allActiveWithDetails();
         $errors = [];
