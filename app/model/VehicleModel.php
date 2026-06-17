@@ -8,7 +8,7 @@ final class VehicleModel
     {
         return Database::connection()->query(
             "SELECT v.marque, v.modele, v.annee, v.immatriculation,
-                    CONCAT(u.nom, ' ', u.prenom) AS proprietaire
+                    CONCAT(u.prenom, ' ', u.nom) AS proprietaire
              FROM vehicule v
              JOIN utilisateur u ON u.id = v.proprietaire_id
              ORDER BY v.id"
